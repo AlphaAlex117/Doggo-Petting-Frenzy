@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="CSharpScript" id=3]
+script/source = "using Godot;
+using System;
+
+public class Dog : Area2D
+{
+	// Declare member variables here.
+
+	// Dog name
+	[Export]
+	public String name;
+
+	// Dog speed
+	[Export]
+	public int Speed = 400;
+
+    // Dog playfulness level
+    [Export]
+	public int Playful;
+
+    // Dog openness level
+    [Export]
+	public int Openness;
+
+    // Dog protectiveness level
+    [Export]
+	public int Protective;
+
+    // Dog energy level
+    [Export]
+	public int Energy;
+
+    // Dog resource
+    [Export]
+	public Resource behavior;
+
+
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+
+	}
+
+	//  // Called every frame. 'delta' is the elapsed time since the previous frame.
+	//  public override void _Process(float delta)
+	//  {
+	//      
+	//  }
+
+	public void Pet()
+	{
+		Hide();
+	}
+
+	public void OnBehaviorTimerTimeout()
+    {
+		behavior.BehaviorStageUpdate();
+    }
+}
+"
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ null ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+height = 0.0
+
+[node name="Pomeranian" type="Area2D"]
+script = SubResource( 3 )
+name = "Pomeranian"
+Speed = 300
+Playful = null
+Openness = null
+Protective = null
+Energy = null
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.025, 0.025 )
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 2 )
