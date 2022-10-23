@@ -23,5 +23,6 @@ format = 1
 
 [node name="Dalmatian" parent="." instance=ExtResource( 3 )]
 position = Vector2( 264, 61 )
+name = null
 
 [connection signal="timeout" from="DogSpawnTimer" to="." method="OnDogSpawnTimerTimeout"]
