@@ -20,31 +20,26 @@ public class Dalmatian : Dog
 		switch (behaviorStage)
 		{
 			case 0:
-				GD.Print("Case 0");
 				velocity.x = 1;
 				velocity.y = 0;
 				break;
 
 			case 1:
-				GD.Print("Case 1");
 				velocity.x = 0;
 				velocity.y = 1;
 				break;
 
 			case 2:
-				GD.Print("Case 2");
 				velocity.x = -1;
 				velocity.y = 0;
 				break;
 
 			case 3:
-				GD.Print("Case 3");
 				velocity.x = 0;
 				velocity.y = -1;
 				break;
 
 			default:
-				GD.Print("Additional Case");
 				break;
 		}
 	}
