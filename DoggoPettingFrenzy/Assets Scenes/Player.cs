@@ -5,7 +5,8 @@ public class Player : Area2D
 {
     // The player's direction.
     [Export]
-    public Vector2 direction;
+    private Vector2 direction;
+    public Vector2 Direction { get { return direction; } }
 
     // The player's petting reach.
     [Export]
@@ -13,23 +14,29 @@ public class Player : Area2D
 
     // How fast the player will move (pixels/sec). Exported so that you can change it in Godot.
     [Export]
-    public int Speed = 400; 
+    private int speed = 400; 
+    public int Speed { get { return speed; } }
 
     // Size of the game window.
     public Vector2 ScreenSize;
 
+    // Set of Raycasts to detect dogs.
     public RayCast2D forwardRay;
     public RayCast2D sideLeftRay;
     public RayCast2D sideRightRay;
 
+    // The Gameplay Node
+    [Export]
+    private Test gameplay;
+    public Test Gameplay { set { gameplay = value; } }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        // Gets the screensize;
+        // Gets the screensize.
         ScreenSize = GetViewportRect().Size;
 
-        // Gets the raycast node;
+        // Gets the raycast node.
         forwardRay = GetNode<RayCast2D>("ForwardRay");
         sideLeftRay = GetNode<RayCast2D>("SideLeftRay");
         sideRightRay = GetNode<RayCast2D>("SideRightRay");
@@ -66,7 +73,7 @@ public class Player : Area2D
         }
 
         // If SPACE is pressed, then pet dog.
-        if (Input.IsActionPressed("PetDog"))
+        if (Input.IsActionJustPressed("PetDog"))
         {
             // if one of the rays touches a dog, then pet the dog.
             if (forwardRay.IsColliding())
@@ -78,16 +85,19 @@ public class Player : Area2D
                 
                 Dog nearestDog = (Dog)forwardRay.GetCollider();
                 nearestDog.Pet();
+                gameplay.AddDog(nearestDog);
             }
             else if (sideLeftRay.IsColliding())
             {
                 Dog nearestDog = (Dog)sideLeftRay.GetCollider();
                 nearestDog.Pet();
+                gameplay.AddDog(nearestDog);
             }
             else if (sideRightRay.IsColliding())
             {
                 Dog nearestDog = (Dog)sideRightRay.GetCollider();
                 nearestDog.Pet();
+                gameplay.AddDog(nearestDog);
             }
         }
 

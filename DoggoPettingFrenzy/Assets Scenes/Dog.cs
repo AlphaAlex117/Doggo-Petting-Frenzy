@@ -1,12 +1,13 @@
 using Godot;
 using System;
 
-public class Dog : Area2D
+public abstract class Dog : Area2D
 {
     // Declare member variables here. Examples:
 
     [Export]
-    public String name;
+    private String name;
+    public String Name { get { return name; } set { name = value; } }
 
     [Export]
     public int Speed;
