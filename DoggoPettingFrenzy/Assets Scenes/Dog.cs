@@ -10,15 +10,21 @@ public abstract class Dog : Area2D
     public String Name { get { return name; } set { name = value; } }
 
     [Export]
-    public int Speed;
+    private int speed;
+    public int Speed { get { return speed; } set { speed = value; } }
 
     public int behaviorStage = 0;
 
     public Vector2 velocity;
 
+    private bool inTrain = false;
+    public bool InTrain { get { return inTrain; } set { inTrain = value; } }
+
     public void Pet()
     {
-        Hide();
+        InTrain = true;
+        velocity.x = 0;
+        velocity.y = 0;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

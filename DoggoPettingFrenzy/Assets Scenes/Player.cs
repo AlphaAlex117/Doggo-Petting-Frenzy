@@ -30,6 +30,10 @@ public class Player : Area2D
     private Test gameplay;
     public Test Gameplay { set { gameplay = value; } }
 
+    // Player's Velocity for Train purposes.
+    private Vector2 trainVelocity;
+    public Vector2 TrainVelocity { get { return trainVelocity; } }
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -129,7 +133,6 @@ public class Player : Area2D
         Position += velocity * delta;
 
 
-
         if (velocity.y > 0)
         {
             animatedSprite.Animation = "down";
@@ -146,5 +149,8 @@ public class Player : Area2D
         {
             animatedSprite.Animation = "left";
         }
-    }
+
+        // Adds the final velocity to the train's velocity.
+        trainVelocity = velocity;
+    } 
 }

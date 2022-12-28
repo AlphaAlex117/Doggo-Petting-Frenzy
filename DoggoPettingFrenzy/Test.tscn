@@ -31,11 +31,6 @@ scale = Vector2( 1.5, 1.5 )
 position = Vector2( -77, -41 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
-
 [node name="MemeDog" parent="." instance=ExtResource( 4 )]
 position = Vector2( 546, 244 )
 
@@ -47,7 +42,13 @@ one_shot = true
 autostart = true
 
 [node name="Dalmatian" parent="." instance=ExtResource( 3 )]
-position = Vector2( 200, 107 )
+position = Vector2( 202, 93 )
+speed = 450
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
 
 [connection signal="timeout" from="DogSpawnTimer" to="." method="OnDogSpawnTimerTimeout"]
 [connection signal="timeout" from="GameEndTimer" to="." method="OnGameEndTimerTimeout"]
