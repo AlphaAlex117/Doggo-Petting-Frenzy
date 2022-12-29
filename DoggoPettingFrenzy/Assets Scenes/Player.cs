@@ -34,6 +34,9 @@ public class Player : Area2D
     private Vector2 trainVelocity;
     public Vector2 TrainVelocity { get { return trainVelocity; } }
 
+    private Vector2 trainDirection;
+    public Vector2 TrainDirection { get { return trainDirection; } }
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -152,5 +155,6 @@ public class Player : Area2D
 
         // Adds the final velocity to the train's velocity.
         trainVelocity = velocity;
+        trainDirection = direction;
     } 
 }

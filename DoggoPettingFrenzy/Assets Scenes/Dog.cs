@@ -13,6 +13,10 @@ public abstract class Dog : Area2D
     private int speed;
     public int Speed { get { return speed; } set { speed = value; } }
 
+    [Export]
+    private Vector2 direction;
+    public Vector2 Direction { get { return direction; } set { direction = value; } }
+
     public int behaviorStage = 0;
 
     public Vector2 velocity;

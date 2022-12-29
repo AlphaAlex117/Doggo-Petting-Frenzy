@@ -36,19 +36,37 @@ public class Test : Node
         if (train.Count > 0)
         {
             Vector2 previousVelocity = head.TrainVelocity;
+            Vector2 previousDirection = head.TrainDirection;
             
             foreach (Dog dog in train)
             {
                 var temp = dog.velocity;
                 dog.velocity = previousVelocity;
                 previousVelocity = temp;
+
+                dog.Direction = previousDirection;
             }
         }
     }
-
+    
     public void AddDog(Dog dog)
     {
-        dog.Position = head.Position;
+        if (train.Count <= 0)
+        {
+            var position = head.Position;
+            //position.x += -head.TrainDirection.x / 2;
+            //position.y += -head.TrainDirection.y / 2;
+            dog.Position += position;
+            GD.Print(position);
+        }
+        else
+        {
+            Dog tailDog = (Dog) train[train.Count - 1];
+            var position = tailDog.Position;
+            position.x += -tailDog.Direction.x / 2;
+            position.y += -tailDog.Direction.y / 2;
+            dog.Position += position;
+        }
         dog.Speed = head.Speed;
         train.Add(dog);
     }
